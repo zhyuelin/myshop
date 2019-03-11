@@ -1,23 +1,34 @@
 <template>
-<div class="admin_container">
-<app-aside></app-aside>
-<router-view></router-view>
-</div>
+  <Layout>
+    <Sider hide-trigger>
+      <app-aside></app-aside>
+    </Sider>
+    <Layout>
+      <Header>Header</Header>
+      <Content>Content</Content>
+      <router-view></router-view>
+    </Layout>
+  </Layout>
 </template>
 
 <script>
 // 导入aside组件
 import Aside from "../components/Aside";
 export default {
-components:{
-    "app-aside": Aside,
-
-}
-}
+  components: {
+    "app-aside": Aside
+  }
+};
 </script>
 
 <style>
-.admin_container{
+html,body{
     height: 100%;
+}
+.ivu-layout.ivu-layout-has-sider {
+  height: 100%;
+}
+.ivu-layout-sider {
+  background: #32446c;
 }
 </style>

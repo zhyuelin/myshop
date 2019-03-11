@@ -1,102 +1,55 @@
-<style >
-html,
-body {
-  height: 100%;
-}
-.layout {
-  height: 100%;
-  border: 1px solid #d7dde4;
-  background: #f5f7f9;
-  position: relative;
-}
-.layout-breadcrumb {
-  padding: 10px 15px 0;
-}
-.layout-content {
-  min-height: 200px;
-  margin: 15px;
-  overflow: hidden;
-  background: #fff;
-  border-radius: 4px;
-}
-.layout-content-main {
-  padding: 10px;
-}
-.layout-copy {
-  text-align: center;
-  padding: 10px 0 20px;
-  color: #9ea7b4;
-}
-.layout-menu-left {
-  background: #464c5b;
-}
-.layout-header {
-  height: 60px;
-  background: #fff;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-}
-.layout-logo-left {
-  width: 90%;
-  height: 30px;
-  background: #5b6270;
-  border-radius: 3px;
-  margin: 15px auto;
-  
-}
-.ivu-row-flex {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    height: 100%
-
-    }
-</style>
 <template>
-  <div class="layout">
-    <Row type="flex">
-      <i-col span="5" class="layout-menu-left">
-        <Menu active-key="1-2" theme="dark" width="auto" :open-keys="['1']">
-          <div class="layout-logo-left"></div>
-          <Submenu key="1">
+    <Menu active-name="1-2" :open-names="['1']" class="aside_container">
+        <div class="app-aside"></div>
+        <Submenu name="1">
             <template slot="title">
-              <Icon type="ios-navigate"></Icon>导航一
+                <Icon type="ios-analytics" />
+                Navigation One
             </template>
-            <Menu-item key="1-1">选项 1</Menu-item>
-            <Menu-item key="1-2">选项 2</Menu-item>
-            <Menu-item key="1-3">选项 3</Menu-item>
-          </Submenu>
-          <Submenu key="2">
+            <MenuGroup title="Item 1">
+                <MenuItem name="1-1">Option 1</MenuItem>
+                <MenuItem name="1-2">Option 2</MenuItem>
+            </MenuGroup>
+            <MenuGroup title="Item 2">
+                <MenuItem name="1-3">Option 3</MenuItem>
+                <MenuItem name="1-4">Option 4</MenuItem>
+            </MenuGroup>
+        </Submenu>
+        <Submenu name="2">
             <template slot="title">
-              <Icon type="ios-keypad"></Icon>导航二
+                <Icon type="ios-filing" />
+                Navigation Two
             </template>
-            <Menu-item key="2-1">选项 1</Menu-item>
-            <Menu-item key="2-2">选项 2</Menu-item>
-          </Submenu>
-          <Submenu key="3">
+            <MenuItem name="2-1">Option 5</MenuItem>
+            <MenuItem name="2-2">Option 6</MenuItem>
+            <Submenu name="3">
+                <template slot="title">Submenu</template>
+                <MenuItem name="3-1">Option 7</MenuItem>
+                <MenuItem name="3-2">Option 8</MenuItem>
+            </Submenu>
+        </Submenu>
+        <Submenu name="4">
             <template slot="title">
-              <Icon type="ios-analytics"></Icon>导航三
+                <Icon type="ios-cog" />
+                Navigation Three
             </template>
-            <Menu-item key="3-1">选项 1</Menu-item>
-            <Menu-item key="3-2">选项 2</Menu-item>
-          </Submenu>
-        </Menu>
-      </i-col>
-      <i-col span="19">
-        <div class="layout-header"></div>
-        <div class="layout-breadcrumb">
-          <Breadcrumb>
-            <Breadcrumb-item href="#">首页</Breadcrumb-item>
-            <Breadcrumb-item href="#">应用中心</Breadcrumb-item>
-            <Breadcrumb-item>某应用</Breadcrumb-item>
-          </Breadcrumb>
-        </div>
-        <div class="layout-content">
-          <div class="layout-content-main">内容区域</div>
-        </div>
-      </i-col>
-    </Row>
-  </div>
+            <MenuItem name="4-1">Option 9</MenuItem>
+            <MenuItem name="4-2">Option 10</MenuItem>
+            <MenuItem name="4-3">Option 11</MenuItem>
+            <MenuItem name="4-4">Option 12</MenuItem>
+        </Submenu>
+    </Menu>
 </template>
 <script>
-export default {};
+    export default {
+        
+    }
 </script>
+<style>
+.app-aside{
+  height:64px; 
+}
+.aside_container{
+  height: 100%
+}
+</style>
