@@ -7,7 +7,9 @@ import '../node_modules/iview/dist/styles/iview.css';
 import store from './store';
 
 // 导入组件
-import Admin from "./pages/Admin"
+import Admin from "./pages/Admin";
+import OrderList from "./pages/order/OrderList";
+import OrderEdit from "./pages/order/OrderEdit";
 
 
 Vue.config.productionTip = false;
@@ -23,7 +25,10 @@ Vue.use(iView, {
 const routes = [
   // 首页路由重定向
   {path:"/", redirect:"admin"},
-  {path:"/admin",component:Admin,meta:"首页"}
+  {path:"/admin",component:Admin,meta:"首页",children:[
+    {path:"order-list",component:OrderList,meta:"订单管理"},
+    {path:"order-edit/:id",component:OrderEdit,meta:"编辑订单"}
+  ]}
 ];
 
 const router = new VueRouter({routes});
