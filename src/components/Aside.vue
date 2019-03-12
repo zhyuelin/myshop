@@ -3,7 +3,7 @@
   active-name="1-2" 
   :open-names="['1']" 
   class="aside_container"
-  v-model="isCollapsed"
+  v-model="collapsible"
   >
     <div class="app-aside"></div>
     <Submenu v-for="(item,index) in menus" :key="index" :name="`${index+1}`">
@@ -73,7 +73,13 @@ export default {
       ]
     };
   },
-
+props:{
+  collapsible:{
+    default:false,
+    type:Boolean
+  },
+  
+}
 };
 </script>
 <style>

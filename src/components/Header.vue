@@ -1,17 +1,16 @@
 <template>
   <Row type="flex" align="middle" justify="space-between">
-    <Icon
-      :style="{margin: '0 20px'}"
-      type="md-menu"
-      size="24"
-    ></Icon>
+    <Icon :style="{margin: '0 20px'}" type="md-arrow-back" size="24" @click="handleToggle"></Icon>
   </Row>
 </template>
 
 <script>
 export default {
-  
-  
+  methods: {
+    handleToggle() {
+      this.$emit("toggle");
+    }
+  }
 };
 </script>
 
