@@ -1,14 +1,25 @@
 <template>
-  <Menu active-name="1-2" :open-names="['1']" class="aside_container">
+  <Menu 
+  active-name="1-2" 
+  :open-names="['1']" 
+  class="aside_container"
+  v-model="isCollapsed"
+  >
     <div class="app-aside"></div>
-    <Submenu v-for="(item,index) in meaus" :key="index" :name="`${index+1}`">
+    <Submenu v-for="(item,index) in menus" :key="index" :name="`${index+1}`">
       <template slot="title">
         <Icon :type="item.icon"/>
-        {{item.tile}}
+        {{item.title}}
       </template>
-      <MenuGroup title="Item 1">
-        <MenuItem name="1-1">Option 1</MenuItem>
-        <MenuItem name="1-2">Option 2</MenuItem>
+      <MenuGroup class="menugroup">
+        <router-link
+        v-for="(subItem,subIndex) in item.group" 
+        :key="subIndex"
+        :to="`${item.path}${subItem.path}`">
+          <MenuItem :name="`${index}-${subIndex}+1`">
+          {{subItem.title}}
+          </MenuItem>
+        </router-link>
       </MenuGroup>
     </Submenu>
   </Menu>
@@ -21,7 +32,7 @@ export default {
         {
           title: "购物商城",
           path: "/admin",
-          icon: "ios-analytic",
+          icon: "md-apps",
           group: [
             {
               path: "/goods-list",
@@ -40,7 +51,7 @@ export default {
         {
           title: "会员管理",
           path: "/admin",
-          icon: "ios-filing",
+          icon: "md-contacts",
           group: [
             {
               path: "/account-list",
@@ -51,7 +62,7 @@ export default {
         {
           title: "商城订单",
           path: "/admin",
-          icon: "ios-cog",
+          icon: "md-reorder",
           group: [
             {
               path: "/order-list",
@@ -61,7 +72,8 @@ export default {
         }
       ]
     };
-  }
+  },
+
 };
 </script>
 <style>
@@ -73,5 +85,8 @@ export default {
   width: 200px !important;
   background: #001529;
   color: #fff;
+}
+.ivu-menu-vertical .ivu-menu-item-group-title {
+  height: 0;
 }
 </style>
