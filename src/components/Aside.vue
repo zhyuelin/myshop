@@ -1,24 +1,19 @@
 <template>
-  <Menu 
-  active-name="1-2" 
-  :open-names="['1']" 
-  class="aside_container"
-  v-model="collapsible"
-  >
+  <Menu active-name="1-2" theme="dark" width="auto" :open-names="['1']">
     <div class="app-aside"></div>
     <Submenu v-for="(item,index) in menus" :key="index" :name="`${index+1}`">
       <template slot="title">
         <Icon :type="item.icon"/>
         {{item.title}}
       </template>
+
       <MenuGroup class="menugroup">
         <router-link
-        v-for="(subItem,subIndex) in item.group" 
-        :key="subIndex"
-        :to="`${item.path}${subItem.path}`">
-          <MenuItem :name="`${index}-${subIndex}+1`">
-          {{subItem.title}}
-          </MenuItem>
+          v-for="(subItem,subIndex) in item.group"
+          :key="subIndex"
+          :to="`${item.path}${subItem.path}`"
+        >
+          <MenuItem :name="`${index}-${subIndex}+1`">{{subItem.title}}</MenuItem>
         </router-link>
       </MenuGroup>
     </Submenu>
@@ -35,15 +30,15 @@ export default {
           icon: "md-apps",
           group: [
             {
-              path: "/goods-list",
+              path: "",
               title: "商品管理"
             },
             {
-              path: "/category-list",
+              path: "",
               title: "栏目管理"
             },
             {
-              path: "/comment-list",
+              path: "",
               title: "评论管理"
             }
           ]
@@ -54,7 +49,7 @@ export default {
           icon: "md-contacts",
           group: [
             {
-              path: "/account-list",
+              path: "",
               title: "会员列表"
             }
           ]
@@ -72,25 +67,12 @@ export default {
         }
       ]
     };
-  },
-props:{
-  collapsible:{
-    default:false,
-    type:Boolean
-  },
-  
-}
+  }
 };
 </script>
 <style>
 .app-aside {
   height: 64px;
-}
-.aside_container {
-  height: 100%;
-  width: 200px !important;
-  background: #001529;
-  color: #fff;
 }
 .ivu-menu-vertical .ivu-menu-item-group-title {
   height: 0;

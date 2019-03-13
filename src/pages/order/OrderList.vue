@@ -130,7 +130,7 @@ export default {
           this.pageSize
         }`
       }).then(res => {
-        console.log(res);
+        // console.log(res);
         
         let { message, pageIndex, pageSize, status, totalcount } = res.data;
         if (status === 0) {
@@ -167,6 +167,16 @@ export default {
   },
   mounted() {
     this.getorderlist();
+
+    //获取是否有登录
+    let username = localStorage.getItem("username");   
+    if (username) {
+      
+    }else {
+      //没有登录过跳转到首页
+      this.$router.push("/admin");
+      // console.log(1);
+    }
   }
 };
 </script>
