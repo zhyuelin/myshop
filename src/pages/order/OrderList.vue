@@ -22,8 +22,8 @@
         <strong>{{ row.name }}</strong>
       </template>
       <template slot-scope="{ row, index }" slot="action">
-        <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">编辑</Button>
-        <Button type="error" size="small" @click="remove(index)">查看</Button>
+        <!-- <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">编辑</Button> -->
+        <app-drawer :row=row :index=index @onchang="getorderlist"></app-drawer>
       </template>
     </Table>
     <Page
@@ -42,18 +42,26 @@
 </template>
 
 <script>
+// 导入Drawer组件
+import Drawer from "../../components/Drawer";
+
 export default {
   name: "orderList",
+  components: {
+    "app-drawer": Drawer,
+  },
   data() {
     return {
       columns12: [
         {
           title: "订单id",
-          key: "id"
+          key: "id",
+          align: "center"
         },
         {
           title: "会员名称",
-          key: "user_name"
+          key: "user_name",
+          align: "center"
         },
         {
           title: "地址",
@@ -108,25 +116,13 @@ export default {
           label: "已取消"
         }
       ],
-      model1: ""
+      model1: "",
+      
     };
   },
   methods: {
-    show(index) {
-      /* this.$Modal.info({
-        title: "User Info",
-        content: `id：${this.data6[index].user_name}<br>状态：${
-          this.data6[index].statusName
-        }<br>Address：${this.data6[index].address}`
-      }); */
-      let orderId = this.data6[index].id
-      console.log(orderId);
-      this.$router.push(`/admin/order-edit/${orderId}`);
-    },
-    remove(index) {
-      this.data6.splice(index, 1);
-    },
     getorderlist() {
+      this.$Loading.start();
       this.$axios({
         url: `/admin/order/getorderlist?orderstatus=${
           this.orderstatus
@@ -135,7 +131,7 @@ export default {
         }`
       }).then(res => {
         console.log(res);
-
+        
         let { message, pageIndex, pageSize, status, totalcount } = res.data;
         if (status === 0) {
           this.data6 = message;
@@ -143,6 +139,7 @@ export default {
           this.pageSize = pageSize;
           this.totalcount = totalcount;
         }
+        this.$Loading.finish();
       });
     },
     pagechange(pagenum) {
@@ -175,4 +172,5 @@ export default {
 </script>
 
 <style>
+
 </style>
